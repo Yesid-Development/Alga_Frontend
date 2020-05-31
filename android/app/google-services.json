@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "682988862758",
+    "firebase_url": "https://alga-fe5a8.firebaseio.com",
+    "project_id": "alga-fe5a8",
+    "storage_bucket": "alga-fe5a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682988862758:android:1aa53a806b253d69c3d5e7",
+        "android_client_info": {
+          "package_name": "com.example.alga_frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682988862758-7okbuljmq3kragdc5fd0h72u7a6qhqah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alga_frontend",
+            "certificate_hash": "62171449746c7dadf256e8229809e8bcc054b90a"
+          }
+        },
+        {
+          "client_id": "682988862758-6oqnm06c3jj73cp2fombp5dbeb7ci9kv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApHBavgml8GAZbkQuaExcKGXtZ-LoHd9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682988862758-6oqnm06c3jj73cp2fombp5dbeb7ci9kv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
