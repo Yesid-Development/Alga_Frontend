@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:alga_frontend/src/auth/auth_state.dart';
 import 'package:alga_frontend/src/utils/validators.dart';
-import 'package:flutter/material.dart';
-import 'package:alga_frontend/src/widgets/Background_auth_widget.dart';
+import 'package:alga_frontend/src/widgets/widgets.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
       body: Consumer(
         builder: (BuildContext context, AuthState value, Widget child) {
           if (value.isLoading()) {
-            return Bounce(
+            return FadeInLeft(
               child: Center(
                   child: SpinKitChasingDots(
                 itemBuilder: (_, int index) {
@@ -29,6 +29,8 @@ class LoginPage extends StatelessWidget {
                 size: 250.0,
               )),
             );
+          } else if (value.isValidating()) {
+            return Scaffold();
           } else {
             return child;
           }

@@ -13,16 +13,16 @@ class AuthState with ChangeNotifier {
     authState();
   }
 
-  // Validar si el usuario ya esta logueado
+// Validar si el usuario ya esta logueado
   void authState() async {
     _prefs = await SharedPreferences.getInstance();
     if(_prefs.containsKey('isLoggedIn')) {
       _user = await _firebaseAuth.currentUser();
       _loggedIn = _user != null;
-      _loading = false;
+      _validating = false;
       notifyListeners();
     } else {
-      _loading = false;
+      _validating = false;
       notifyListeners();
     }
   }
@@ -30,11 +30,13 @@ class AuthState with ChangeNotifier {
 
   //========= Public methods =========\\
   bool _loggedIn = false;
-  bool _loading = true;
+  bool _loading = false;
+  bool _validating = true;
   FirebaseUser _user;
   
   bool isLoggedIn() => _loggedIn;
   bool isLoading() => _loading;
+  bool isValidating() => _validating;
   FirebaseUser currentUser() => _user;
 
   void googleLogin() async {

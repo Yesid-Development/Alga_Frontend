@@ -1,7 +1,7 @@
 import 'package:alga_frontend/src/utils/validators.dart';
+import 'package:alga_frontend/src/widgets/widgets.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:alga_frontend/src/widgets/Background_auth_widget.dart';
 
 class RegisterPage extends StatelessWidget {
   @override

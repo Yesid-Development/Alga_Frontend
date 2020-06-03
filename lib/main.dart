@@ -1,7 +1,10 @@
 import 'package:alga_frontend/src/auth/auth_state.dart';
 import 'package:alga_frontend/src/pages/home_page.dart';
 import 'package:alga_frontend/src/pages/login_page.dart';
+import 'package:alga_frontend/src/pages/profile_page.dart';
 import 'package:alga_frontend/src/pages/register_page.dart';
+import 'package:alga_frontend/src/pages/settings_page.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
  
@@ -19,15 +22,21 @@ class MyApp extends StatelessWidget {
           '/': (BuildContext context) {
             final state = Provider.of<AuthState>(context);
             if (state.isLoggedIn()) {
-              return HomePage();
+              return BounceInRight(child: HomePage());
             } else {
-              return LoginPage();
+              return BounceInRight(child: LoginPage());
             }
           },
-          'login': (BuildContext context) => LoginPage(),
+          'home'    : (BuildContext context) => HomePage(),
+          'login'   : (BuildContext context) => LoginPage(),
           'register': (BuildContext context) => RegisterPage(),
+          'settings': (BuildContext context) => SettingsPage(),
+          'profile' : (BuildContext context) => ProfilePage(),
         },
       ),
     );
   }
 }
+
+
+//adb connect 127.0.0.1:62001
