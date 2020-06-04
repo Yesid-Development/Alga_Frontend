@@ -70,7 +70,7 @@ class __LoginFormState extends State<_LoginForm> {
           ),
           Container(
             width: _size.width * 0.85,
-            height: _size.height * 0.83,
+            height: _size.height * 0.9,
             margin: EdgeInsets.symmetric(vertical: 10.0),
             padding: EdgeInsets.symmetric(vertical: 50.0),
             decoration: BoxDecoration(

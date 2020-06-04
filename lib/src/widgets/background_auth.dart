@@ -32,7 +32,7 @@ class Background extends StatelessWidget {
           children: <Widget>[
             Icon(FontAwesomeIcons.leaf, color: Colors.white, size: 100.0),
             SizedBox(height: 5.0),
-            Text('Alga', style: TextStyle(color: Colors.white, fontSize: 30.0))
+            Text('Alga', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold))
           ],
         ),
       ),

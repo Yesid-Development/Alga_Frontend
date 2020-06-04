@@ -1,7 +1,6 @@
 import 'package:alga_frontend/src/auth/auth_state.dart';
-import 'package:alga_frontend/src/widgets/background_home.dart';
-import 'package:alga_frontend/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:alga_frontend/src/widgets/widgets.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -16,26 +15,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Stack(
-      children: <Widget>[
-        BackgroundHome(),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: CustomAppBar(),
-          body: CustomScrollView(
-            physics: ClampingScrollPhysics(),
-            slivers: <Widget>[
-              _buildHeader(screenHeight),
-            ],
+    return  Stack(
+        children: <Widget>[
+          BackgroundHome(),
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            body: SafeArea(
+              child: CustomScrollView(
+                physics: BouncingScrollPhysics(),
+                slivers: <Widget>[_buildHeader(screenHeight), _circleButtons()],
+              ),
+            ),
+            floatingActionButton: _buildFloatingButton(),
           ),
-          floatingActionButton: _myFloatingButton(),
-        ),
-      ],
+        ],
     );
   }
 
-  // Body
-  SliverToBoxAdapter _buildHeader(double screenHeigjt) {
+  //========== Body ==========\\
+  SliverToBoxAdapter _buildHeader(double screenHeight) {
     return SliverToBoxAdapter(
       child: Container(
         padding: EdgeInsets.all(20.0),
@@ -46,28 +44,126 @@ class _HomePageState extends State<HomePage> {
             bottomRight: Radius.circular(40.0),
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              'Yesid Rodelo',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.w900),
-            )
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Bienvenido',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w900),
+                ),
+                SizedBox(height: screenHeight * 0.01),
+                Text(
+                  'Yesid Rodelo',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w900),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _myFloatingButton() {
-    final _action = Provider.of<AuthState>(context);
+  SliverToBoxAdapter _circleButtons() {
+    return SliverToBoxAdapter(
+      child: Table(
+        children: [
+          TableRow(children: [
+            _createCircleButton(
+              Colors.white,
+              FontAwesomeIcons.solidFolderOpen,
+              'Documentos',
+              'documents'
+            ),
+            _createCircleButton(
+              Colors.white,
+              FontAwesomeIcons.calendarAlt,
+              'Reuniones',
+              'meetings'
+            ),
+          ]),
+          TableRow(children: [
+            _createCircleButton(
+              Colors.white,
+              FontAwesomeIcons.envelopeOpenText,
+              'Solicitudes',
+              'requests'
+            ),
+            _createCircleButton(
+              Colors.white,
+              FontAwesomeIcons.addressBook,
+              'Contactos',
+              'contacts'
+            ),
+          ]),
+        ],
+      ),
+    );
+  }
+
+  Widget _createCircleButton(Color color, IconData icon, String text, String route) {
+    return Container(
+      height: 180.0,
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        color: Colors.white24,
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black26,
+              blurRadius: 5.0,
+              offset: Offset(1.0, 5.0),
+              spreadRadius: 3)
+        ],
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20.0),
+        splashColor: Colors.deepPurple,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            CircleAvatar(
+              backgroundColor: color,
+              radius: 35,
+              child: Icon(
+                icon,
+                size: 40.0,
+                color: Colors.blue,
+              ),
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                color: color,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w700,
+                fontSize: 20.0,
+              ),
+            )
+          ],
+        ),
+        onTap: ()=> {
+          Navigator.of(context).pushNamed(route)
+        },
+      ),
+    );
+  }
+
+  SpeedDial _buildFloatingButton() {
+    final state = Provider.of<AuthState>(context);
 
     return SpeedDial(
-      marginRight: 18,
-      marginBottom: 20,
+      marginRight: 5,
+      marginBottom: 10,
       animatedIcon: AnimatedIcons.menu_close,
       animatedIconTheme: IconThemeData(size: 22.0),
       visible: true,
@@ -75,24 +171,17 @@ class _HomePageState extends State<HomePage> {
       curve: Curves.bounceIn,
       overlayColor: Colors.black,
       overlayOpacity: 0.5,
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
+      backgroundColor: Colors.white24,
+      foregroundColor: Colors.white,
       elevation: 8.0,
       shape: CircleBorder(),
       children: [
         SpeedDialChild(
-          child: Icon(FontAwesomeIcons.cog),
-          backgroundColor: Colors.blue,
-          label: 'Config',
-          labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () => {Navigator.pushNamed(context, 'settings')},
-        ),
-        SpeedDialChild(
-          child: Icon(FontAwesomeIcons.powerOff),
+          child: Icon(FontAwesomeIcons.signOutAlt),
           backgroundColor: Colors.red,
           label: 'Salir',
           labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () => {_action.logout()},
+          onTap: () => state.logout(),
         ),
       ],
     );

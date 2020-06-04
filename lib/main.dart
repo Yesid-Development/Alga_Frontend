@@ -1,12 +1,19 @@
-import 'package:alga_frontend/src/auth/auth_state.dart';
-import 'package:alga_frontend/src/pages/home_page.dart';
-import 'package:alga_frontend/src/pages/login_page.dart';
-import 'package:alga_frontend/src/pages/profile_page.dart';
-import 'package:alga_frontend/src/pages/register_page.dart';
-import 'package:alga_frontend/src/pages/settings_page.dart';
-import 'package:animate_do/animate_do.dart';
+import 'package:alga_frontend/src/pages/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+// Routes
+import 'package:alga_frontend/src/auth/auth_state.dart';
+import 'package:alga_frontend/src/pages/contacts_page.dart';
+import 'package:alga_frontend/src/pages/documents_page.dart';
+import 'package:alga_frontend/src/pages/home_page.dart';
+import 'package:alga_frontend/src/pages/login_page.dart';
+import 'package:alga_frontend/src/pages/meetings_page.dart';
+import 'package:alga_frontend/src/pages/profile_page.dart';
+import 'package:alga_frontend/src/pages/register_page.dart';
+import 'package:alga_frontend/src/pages/requests_page.dart';
+import 'package:alga_frontend/src/pages/edit_profile_page.dart';
+
  
 void main() => runApp(MyApp());
  
@@ -22,16 +29,20 @@ class MyApp extends StatelessWidget {
           '/': (BuildContext context) {
             final state = Provider.of<AuthState>(context);
             if (state.isLoggedIn()) {
-              return BounceInRight(child: HomePage());
+              return  Navigation();
             } else {
-              return BounceInRight(child: LoginPage());
+              return  LoginPage();
             }
           },
-          'home'    : (BuildContext context) => HomePage(),
-          'login'   : (BuildContext context) => LoginPage(),
-          'register': (BuildContext context) => RegisterPage(),
-          'settings': (BuildContext context) => SettingsPage(),
-          'profile' : (BuildContext context) => ProfilePage(),
+          'login'     : (BuildContext context) => LoginPage(),
+          'register'  : (BuildContext context) => RegisterPage(),
+          'home'      : (BuildContext context) => HomePage(),
+          'documents' : (BuildContext context) => DocumentsPage(),
+          'meetings'  : (BuildContext context) => MeetingsPage(),
+          'requests'  : (BuildContext context) => RequestsPage(),
+          'contacts'  : (BuildContext context) => ContactsPage(),
+          'profile'   : (BuildContext context) => ProfilePage(),
+          'edit'      : (BuildContext context) => EditProfilePage(),
         },
       ),
     );

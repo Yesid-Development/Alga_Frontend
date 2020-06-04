@@ -25,12 +25,12 @@ class _ProfilePageState extends State<ProfilePage> {
     final _background = ClipRRect(
       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(70)),
       child: Container(
-        height: size.height * 0.49,
+        height: size.height * 0.52,
         width: double.infinity,
         child: FadeInImage(
           image: NetworkImage(
               'https://image.freepik.com/foto-gratis/fondo-hojas-verdes-tropicales_53876-88891.jpg'),
-          placeholder: AssetImage('assets/other_loading.gif'),
+          placeholder: AssetImage('assets/gifs/other_loading.gif'),
           fit: BoxFit.cover,
         ),
       ),
@@ -145,6 +145,9 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Column _personalData(Size size) {
+    final _textColor = Colors.white;
+    final _iconColor = Colors.white;
+
     final datos = Container(
       margin: EdgeInsets.only(top: 340, left: 10, right: 10),
       height: size.height * 0.91,
@@ -172,13 +175,13 @@ class _ProfilePageState extends State<ProfilePage> {
               child: FadeInImage(
                 image: NetworkImage(
                     'https://image.freepik.com/foto-gratis/fondo-hojas-verdes-tropicales_53876-88891.jpg'),
-                placeholder: AssetImage('assets/other_loading.gif'),
+                placeholder: AssetImage('assets/gifs/loading.gif'),
                 fit: BoxFit.cover,
               ),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(color: Colors.white70, boxShadow: [
+              decoration: BoxDecoration(color: Colors.white12, boxShadow: [
                 BoxShadow(
                   color: Colors.black38,
                   blurRadius: 20.0,
@@ -189,44 +192,44 @@ class _ProfilePageState extends State<ProfilePage> {
                   ListTile(
                     title: Text('Datos Personales',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 22,
                             fontWeight: FontWeight.bold)),
                   ),
                   ListTile(
-                    title: Text('Nombre'),
-                    subtitle: Text('Andres'),
-                    leading: Icon(Icons.account_box),
+                    title: Text('Nombre', style: TextStyle(color: _textColor),),
+                    subtitle: Text('Andres', style: TextStyle(color: _textColor)),
+                    leading: Icon(Icons.account_box, color: _textColor)
                   ),
                   ListTile(
-                    title: Text('Apellido'),
-                    subtitle: Text('Bustamante Castro'),
-                    leading: Icon(Icons.portrait),
+                    title: Text('Apellido', style: TextStyle(color: _textColor)),
+                    subtitle: Text('Bustamante Castro', style: TextStyle(color: _textColor)),
+                    leading: Icon(Icons.portrait, color: _textColor)
                   ),
                   ListTile(
-                    title: Text('Dirección'),
-                    subtitle: Text('Calle 14 #52-64'),
-                    leading: Icon(Icons.place),
+                    title: Text('Dirección', style: TextStyle(color: _textColor)),
+                    subtitle: Text('Calle 14 #52-64', style: TextStyle(color: _textColor)),
+                    leading: Icon(Icons.place, color: _textColor)
                   ),
                   ListTile(
-                    title: Text('Teléfono'),
-                    subtitle: Text('31617382014'),
-                    leading: Icon(Icons.add_call),
+                    title: Text('Teléfono', style: TextStyle(color: _textColor)),
+                    subtitle: Text('31617382014', style: TextStyle(color: _textColor)),
+                    leading: Icon(Icons.add_call, color: _textColor)
                   ),
                   ListTile(
-                    title: Text('Correo'),
-                    subtitle: Text('Ejemplo@gmail.com'),
-                    leading: Icon(Icons.alternate_email),
+                    title: Text('Correo', style: TextStyle(color: _textColor)),
+                    subtitle: Text('Ejemplo@gmail.com', style: TextStyle(color: _textColor)),
+                    leading: Icon(Icons.alternate_email, color: _textColor)
                   ),
                   ListTile(
-                    title: Text('Fecha de Ingreso'),
-                    subtitle: Text('06:00 A.m.'),
-                    leading: Icon(Icons.access_alarm),
+                    title: Text('Fecha de Ingreso', style: TextStyle(color: _textColor)),
+                    subtitle: Text('06:00 A.m.', style: TextStyle(color: _textColor)),
+                    leading: Icon(Icons.access_alarm, color: _textColor)
                   ),
                   ListTile(
-                    title: Text('Fecha de Salida'),
-                    subtitle: Text('04:00 P.m.'),
-                    leading: Icon(Icons.access_alarm),
+                    title: Text('Fecha de Salida', style: TextStyle(color: _textColor)),
+                    subtitle: Text('04:00 P.m.', style: TextStyle(color: _textColor)),
+                    leading: Icon(Icons.access_alarm, color: _textColor)
                   ), // leading: Icon(Ic
                 ],
               ),
@@ -269,7 +272,9 @@ class _ProfilePageState extends State<ProfilePage> {
           backgroundColor: Colors.lightBlueAccent,
           label: 'Editar',
           labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () => {},
+          onTap: () => {
+            Navigator.of(context).pushNamed('edit')
+          },
         ),
       ],
     );
