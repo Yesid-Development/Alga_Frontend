@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
               Colors.white,
               FontAwesomeIcons.solidFolderOpen,
               'Documentos',
-              'documents'
+              'listaD'
             ),
             _createCircleButton(
               Colors.white,
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
               Colors.white,
               FontAwesomeIcons.envelopeOpenText,
               'Solicitudes',
-              'requests'
+              'request'
             ),
             _createCircleButton(
               Colors.white,
