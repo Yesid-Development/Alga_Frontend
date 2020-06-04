@@ -261,13 +261,6 @@ class _ProfilePageState extends State<ProfilePage> {
       shape: CircleBorder(),
       children: [
         SpeedDialChild(
-          child: Icon(FontAwesomeIcons.arrowLeft),
-          backgroundColor: Colors.green,
-          label: 'Atrás',
-          labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () => {Navigator.of(context).pop()},
-        ),
-        SpeedDialChild(
           child: Icon(FontAwesomeIcons.paintBrush),
           backgroundColor: Colors.lightBlueAccent,
           label: 'Editar',
