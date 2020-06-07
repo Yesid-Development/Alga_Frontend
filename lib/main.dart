@@ -59,10 +59,10 @@ class MyApp extends StatelessWidget {
           'contacts'  : (BuildContext context) => ContactsPage(),
           'profile'   : (BuildContext context) => ProfilePage(),
           'edit'      : (BuildContext context) => EditProfilePage(),
-          'request' :  (BuildContext context) => RequestPage(),
-          'newR' : (BuildContext context) => NewRequestPage(),
-          'openR' : (BuildContext context) => OpenRequestPage(),
-          'listaD' : (BuildContext context) => ListasDPage()
+          'request'   :  (BuildContext context) => RequestPage(),
+          'newR'      : (BuildContext context) => NewRequestPage(),
+          'openR'     : (BuildContext context) => OpenRequestPage(),
+          'listaD'    : (BuildContext context) => ListasDPage()
         },
       ),
     );
