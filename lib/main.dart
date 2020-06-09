@@ -44,12 +44,13 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         routes: {
           '/': (BuildContext context) {
-            final state = Provider.of<AuthState>(context);
-            if (state.isLoggedIn()) {
-              return  Navigation();
-            } else {
-              return  LoginPage();
-            }
+            // final state = Provider.of<AuthState>(context);
+            // if (state.isLoggedIn()) {
+            //   return  Navigation();
+            // } else {
+            //   return  LoginPage();
+            // }
+            return Navigation();
           },
           'login'     : (BuildContext context) => LoginPage(),
           'register'  : (BuildContext context) => RegisterPage(),
