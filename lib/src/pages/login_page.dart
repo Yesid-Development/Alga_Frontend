@@ -55,6 +55,16 @@ class __LoginFormState extends State<_LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _validator = Validators();
 
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
@@ -119,6 +129,7 @@ class __LoginFormState extends State<_LoginForm> {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 30.0),
       child: TextFormField(
+          controller: _emailController,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             border: OutlineInputBorder(
@@ -141,6 +152,7 @@ class __LoginFormState extends State<_LoginForm> {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 30.0),
       child: TextFormField(
+        controller: _passwordController,
         decoration: InputDecoration(
           border: OutlineInputBorder(
               borderRadius: BorderRadius.only(
@@ -162,6 +174,8 @@ class __LoginFormState extends State<_LoginForm> {
   }
 
   Widget _loginButton() {
+    final _action = Provider.of<AuthState>(context);
+
     return RaisedButton(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
@@ -176,7 +190,19 @@ class __LoginFormState extends State<_LoginForm> {
       elevation: 0.0,
       color: Colors.green[700],
       textColor: Colors.white,
-      onPressed: _submit,
+      onPressed: () {
+        final isValid = _formKey.currentState.validate();
+
+        if (isValid) {
+          String _email = _emailController.text;
+          String _password = _passwordController.text;
+
+          _action.singInWithEmailAndPassword(_email, _password);
+
+          Scaffold.of(context)
+              .showSnackBar(SnackBar(content: Text('Ingresando')));
+        }
+      },
     );
   }
 
@@ -192,12 +218,6 @@ class __LoginFormState extends State<_LoginForm> {
             .showSnackBar(SnackBar(content: Text('Ingresando')));
       }),
     );
-  }
-
-  void _submit() {
-    if (_formKey.currentState.validate()) {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Ingresando')));
-    }
   }
 }
 

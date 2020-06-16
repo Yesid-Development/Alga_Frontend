@@ -1,7 +1,11 @@
+import 'dart:async';
+
+import 'package:alga_frontend/src/auth/auth_state.dart';
 import 'package:alga_frontend/src/utils/validators.dart';
 import 'package:alga_frontend/src/widgets/widgets.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
   @override
@@ -26,12 +30,14 @@ class __RegisterFormState extends State<_RegisterForm> {
   final _formKey = GlobalKey<FormState>();
   final _validator = Validators();
 
-  void _submit() async {
-    final isValid = _formKey.currentState.validate();
-    if (isValid) {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Registrando')));
-      print('Registrado');
-    }
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,7 +55,7 @@ class __RegisterFormState extends State<_RegisterForm> {
           ),
           Container(
             width: size.width * 0.85,
-            height: size.height * 0.90,
+            height: size.height * 0.85,
             margin: EdgeInsets.symmetric(vertical: 10.0),
             padding: EdgeInsets.symmetric(vertical: 50.0),
             decoration: BoxDecoration(
@@ -72,7 +78,6 @@ class __RegisterFormState extends State<_RegisterForm> {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      _createUsername(),
                       SizedBox(height: 30.0),
                       _createEmail(),
                       SizedBox(height: 30.0),
@@ -92,31 +97,11 @@ class __RegisterFormState extends State<_RegisterForm> {
     );
   }
 
-  Widget _createUsername() {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, right: 30.0),
-      child: TextFormField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(50),
-                    bottomLeft: Radius.circular(30))),
-            icon: Icon(Icons.person, color: Colors.green[700]),
-            labelText: 'Nombre de Usuario',
-          ),
-          autovalidate: false,
-          autocorrect: false,
-          validator: (text) {
-            return _validator.toValidateUsername(text);
-          }),
-    );
-  }
-
   Widget _createEmail() {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 30.0),
       child: TextFormField(
+        controller: _emailController,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -140,6 +125,7 @@ class __RegisterFormState extends State<_RegisterForm> {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 30.0),
       child: TextFormField(
+        controller: _passwordController,
         decoration: InputDecoration(
           border: OutlineInputBorder(
               borderRadius: BorderRadius.only(
@@ -161,6 +147,8 @@ class __RegisterFormState extends State<_RegisterForm> {
   }
 
   Widget _registerButton() {
+    final _action = Provider.of<AuthState>(context);
+
     return RaisedButton(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 75.0, vertical: 15.0),
@@ -175,7 +163,20 @@ class __RegisterFormState extends State<_RegisterForm> {
       elevation: 0.0,
       color: Colors.green[700],
       textColor: Colors.white,
-      onPressed: _submit,
+      onPressed: () {
+        final isValid = _formKey.currentState.validate();
+        if (isValid) {
+          String email = _emailController.text;
+          String password = _passwordController.text;
+
+          _action.singUpWithEmailAndPassword(email, password);
+
+          Scaffold.of(context).showSnackBar(
+              SnackBar(content: Text('Nuevo usuario registrado')));
+
+          Timer(Duration(seconds: 2), () => Navigator.pushReplacementNamed(context, 'login'));
+        }
+      },
     );
   }
 }

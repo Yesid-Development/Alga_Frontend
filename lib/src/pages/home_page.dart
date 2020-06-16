@@ -1,4 +1,5 @@
 import 'package:alga_frontend/src/auth/auth_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:alga_frontend/src/widgets/widgets.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -34,6 +35,8 @@ class _HomePageState extends State<HomePage> {
 
   //========== Body ==========\\
   SliverToBoxAdapter _buildHeader(double screenHeight) {
+    final _user = Provider.of<AuthState>(context).currentUser(); 
+
     return SliverToBoxAdapter(
       child: Container(
         padding: EdgeInsets.all(20.0),
@@ -54,17 +57,10 @@ class _HomePageState extends State<HomePage> {
                   'Bienvenido',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 30.0,
+                      fontSize: 35.0,
                       fontWeight: FontWeight.w900),
                 ),
-                SizedBox(height: screenHeight * 0.01),
-                Text(
-                  'Yesid Rodelo',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w900),
-                ),
+                SizedBox(height: screenHeight * 0.04),
               ],
             ),
           ],

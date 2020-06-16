@@ -16,7 +16,7 @@ class AuthState with ChangeNotifier {
 // Validar si el usuario ya esta logueado
   void authState() async {
     _prefs = await SharedPreferences.getInstance();
-    if(_prefs.containsKey('isLoggedIn')) {
+    if (_prefs.containsKey('isLoggedIn')) {
       _user = await _firebaseAuth.currentUser();
       _loggedIn = _user != null;
       _validating = false;
@@ -27,18 +27,46 @@ class AuthState with ChangeNotifier {
     }
   }
 
-
   //========= Public methods =========\\
   bool _loggedIn = false;
   bool _loading = false;
   bool _validating = true;
   FirebaseUser _user;
-  
+  AuthResult _result;
+
   bool isLoggedIn() => _loggedIn;
   bool isLoading() => _loading;
   bool isValidating() => _validating;
   FirebaseUser currentUser() => _user;
 
+// SingIn with email and password
+  void singInWithEmailAndPassword(String _email, String _password) async {
+    _loading = true;
+    notifyListeners();
+
+    await _signIn(_email, _password);
+
+    _loading = false;
+    if (_user != null) {
+      _prefs.setBool('isLoggedIn', true);
+      _loggedIn = true;
+      notifyListeners();
+    } else {
+      _loggedIn = false;
+      notifyListeners();
+    }
+  }
+
+// SingUn with email and password
+  void singUpWithEmailAndPassword(String _email, String _password) async {
+    _loading = true;
+    notifyListeners();
+
+    await _signUp(_email, _password);
+    _loading = false;
+  }
+
+// SingIn with Google
   void googleLogin() async {
     _loading = true;
     notifyListeners();
@@ -68,9 +96,8 @@ class AuthState with ChangeNotifier {
   }
   //========= Public methods =========\\
 
-
   //========= Private methods =========\\
-  
+
   // Sign in with Google
   Future<FirebaseUser> _googleSingIn() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
@@ -86,14 +113,25 @@ class AuthState with ChangeNotifier {
   }
 
   // Sign in with email and password
-  Future<void> _signInWithCredentials(String email, String password) {
-    return _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+  Future<void> _signIn(String email, String password) async {
+    try {
+      _user = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((result) {
+        _result = result;
+        FirebaseUser usr = _result.user;
+        return usr;
+      });
+    } catch (e) {
+      print(e);
+      _user = null;
+      _result = null;
+    }
   }
 
   // SignUp - Registro
   Future<void> _signUp(String email, String password) async {
-    return await _firebaseAuth.createUserWithEmailAndPassword(
+    await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
   }
 
@@ -102,8 +140,18 @@ class AuthState with ChangeNotifier {
     return Future.wait([_firebaseAuth.signOut(), _googleSignIn.signOut()]);
   }
 
-  //========= Private methods =========\\
+  // Send email verification
+  // Future<void> sendEmailVerification() async {
+  //   FirebaseUser user = await _firebaseAuth.currentUser();
+  //   user.sendEmailVerification();
+  // }
 
+  // Future<bool> isEmailVerified() async {
+  //   FirebaseUser user = await _firebaseAuth.currentUser();
+  //   return user.isEmailVerified;
+  // }
+
+  //========= Private methods =========\\
 
   // Obtener usuario
   // Future<String> _getUser() async {
