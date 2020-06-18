@@ -28,6 +28,7 @@ dependencies:
   flutter_speed_dial: ^1.2.5
   flutter_swiper: ^1.1.6
   curved_navigation_bar: ^0.3.2
+  cloud_firestore: ^0.13.6
 
 dev_dependencies:
   flutter_test:

@@ -90,8 +90,8 @@ class _HomePageState extends State<HomePage> {
           TableRow(children: [
             _createCircleButton(
               Colors.white,
-              FontAwesomeIcons.envelopeOpenText,
-              'Solicitudes',
+              FontAwesomeIcons.tasks,
+              'Tareas',
               'request'
             ),
             _createCircleButton(

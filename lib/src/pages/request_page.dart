@@ -13,7 +13,7 @@ class _RequestPageState extends State<RequestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Solicitudes')),
+      appBar: AppBar(title: Text('Tareas'), backgroundColor: Colors.blue,),
       body: ListView(
         children: _buildList(),
       ),
@@ -28,7 +28,6 @@ class _RequestPageState extends State<RequestPage> {
           children: <Widget>[
             ListTile(
               title: Text(item),
-              subtitle: Text('Motivo'),
               trailing: Icon(
                 Icons.arrow_forward_ios,
 // La idea es que se ponga el color segun el estado de la solicitud, Verde aceptado, Oro en espera y Rojo negado
@@ -53,8 +52,8 @@ class _RequestPageState extends State<RequestPage> {
 
   FloatingActionButton _buildFloatingActionButton() {
     return FloatingActionButton(
-        backgroundColor: Color.fromRGBO(255, 255, 255, 100),
-        child: Icon(Icons.add, size: 35, color: Color(0xff32a05f)),
+        backgroundColor: Colors.white,
+        child: Icon(Icons.add, size: 35, color: Colors.blue),
         onPressed: () {
           final route =
               MaterialPageRoute(builder: (context) => NewRequestPage());

@@ -124,7 +124,7 @@ class _OpenRequestPageState extends State<OpenRequestPage> {
         SpeedDialChild(
           child: Icon(FontAwesomeIcons.check),
           backgroundColor: Colors.green,
-          label: 'Aceptado',
+          label: 'Terminado',
           labelStyle: TextStyle(fontSize: 18.0),
           onTap: () {
           },
