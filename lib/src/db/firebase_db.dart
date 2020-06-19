@@ -12,3 +12,17 @@ void createTasks(String title, String date, String description) async {
           'description': description
         });
 }
+
+void createProfile(String nombre, String apellido, String direccion, String telefono, String correo, String correoP, String sede) async {
+  await dbRef.collection('profile')
+        .document()
+        .setData({
+          'nombre': nombre,
+          'apellido': apellido,
+          'direccion': direccion,
+          'telefono': telefono,
+          'correo': correo,
+          'correoP': correoP,
+          'sede': sede,
+        });
+}
