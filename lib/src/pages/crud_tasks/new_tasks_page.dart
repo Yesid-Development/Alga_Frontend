@@ -4,31 +4,32 @@ import 'package:alga_frontend/src/db/firebase_db.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
-class NewRequestPage extends StatelessWidget {
+class NewTaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Crear tarea'),
       ),
-      body: BounceInRight(child: _NewRequestForm()),
+      body: BounceInRight(child: _NewTaskForm()),
     );
   }
 }
 
-class _NewRequestForm extends StatefulWidget {
+class _NewTaskForm extends StatefulWidget {
   @override
-  __NewRequestFormState createState() => __NewRequestFormState();
+  __NewTaskFormState createState() => __NewTaskFormState();
 }
 
-class __NewRequestFormState extends State<_NewRequestForm> {
+class __NewTaskFormState extends State<_NewTaskForm> {
   String _fecha = '';
 
   final _formkey = GlobalKey<FormState>();
+  String tasks;
 
-  final _dateController = new TextEditingController();
-  final _titleController = new TextEditingController();
-  final _descriptionController = new TextEditingController();
+  final _dateController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _descriptionController = TextEditingController();
 
   @override
   void dispose() {
@@ -37,6 +38,7 @@ class __NewRequestFormState extends State<_NewRequestForm> {
     _descriptionController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,10 @@ class __NewRequestFormState extends State<_NewRequestForm> {
   }
 
   Widget _tituloField() {
+
+
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       controller: _titleController,
       maxLength: 100,
       decoration: InputDecoration(
@@ -168,7 +173,7 @@ class __NewRequestFormState extends State<_NewRequestForm> {
           createTasks(title, date, description);
 
           Scaffold.of(context).showSnackBar(
-              SnackBar(content: Text('Nuevo usuario registrado')));
+              SnackBar(content: Text('Nueva tarea agregada')));
 
           Timer(Duration(seconds: 2), () => Navigator.pop(context));
         }

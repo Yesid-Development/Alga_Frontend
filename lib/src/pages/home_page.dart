@@ -1,5 +1,4 @@
 import 'package:alga_frontend/src/auth/auth_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:alga_frontend/src/widgets/widgets.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -35,7 +34,6 @@ class _HomePageState extends State<HomePage> {
 
   //========== Body ==========\\
   SliverToBoxAdapter _buildHeader(double screenHeight) {
-    final _user = Provider.of<AuthState>(context).currentUser(); 
 
     return SliverToBoxAdapter(
       child: Container(
@@ -78,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               Colors.white,
               FontAwesomeIcons.solidFolderOpen,
               'Documentos',
-              'listaD'
+              'documents'
             ),
             _createCircleButton(
               Colors.white,
@@ -92,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               Colors.white,
               FontAwesomeIcons.tasks,
               'Tareas',
-              'request'
+              'tasks'
             ),
             _createCircleButton(
               Colors.white,

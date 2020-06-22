@@ -146,7 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Column _personalData(Size size) {
     final _textColor = Colors.white;
-    final _iconColor = Colors.white;
+
 
     final datos = Container(
       margin: EdgeInsets.only(top: 340, left: 10, right: 10),
