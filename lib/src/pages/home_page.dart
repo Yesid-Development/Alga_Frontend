@@ -68,6 +68,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   SliverToBoxAdapter _circleButtons() {
+
     return SliverToBoxAdapter(
       child: Table(
         children: [
@@ -131,7 +132,7 @@ class _HomePageState extends State<HomePage> {
               child: Icon(
                 icon,
                 size: 40.0,
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
               ),
             ),
             Text(
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage> {
       shape: CircleBorder(),
       children: [
         SpeedDialChild(
-          child: Icon(FontAwesomeIcons.signOutAlt),
+          child: Icon(FontAwesomeIcons.signOutAlt, color: Colors.white),
           backgroundColor: Colors.red,
           label: 'Salir',
           labelStyle: TextStyle(fontSize: 18.0),
