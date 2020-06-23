@@ -5,13 +5,11 @@ class TasksModels {
   String title;
   String date;
   String description;
-  DocumentReference document;
 
   TasksModels({
     this.title,
     this.date,
     this.description,
-    this.document
   });
 }
 
@@ -23,7 +21,6 @@ class ProfileModels{
   String phone;
   String email;
   String emailEmp;
-  DocumentReference documentP;
 
   ProfileModels({
     this.name,
@@ -32,7 +29,6 @@ class ProfileModels{
     this.phone,
     this.email,
     this.emailEmp,   
-    this.documentP 
   });
 }
 

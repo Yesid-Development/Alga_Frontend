@@ -23,7 +23,6 @@ class _EditProfileForm extends StatefulWidget {
 }
 
 class __EditProfileFormtate extends State<_EditProfileForm> {
-
   final _formkey = GlobalKey<FormState>();
   ProfileModels profile = ProfileModels();
 
@@ -40,7 +39,7 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
       physics: BouncingScrollPhysics(),
       children: <Widget>[
         Container(
-          height: size.height * 0.86,
+          height: size.height * 1.2,
           margin: EdgeInsets.all(24),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -80,7 +79,6 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
   }
 
   Widget _nameField() {
-
     final _nameController = new TextEditingController(text: profile.name);
 
     return TextFormField(
@@ -100,8 +98,8 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
   }
 
   Widget _lastnameField() {
-
-    final _lastnameController = new TextEditingController(text: profile.lastname);
+    final _lastnameController =
+        new TextEditingController(text: profile.lastname);
 
     return TextFormField(
       textCapitalization: TextCapitalization.words,
@@ -120,8 +118,8 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
   }
 
   Widget _directionField() {
-
-    final _directionController = new TextEditingController(text: profile.direction);
+    final _directionController =
+        new TextEditingController(text: profile.direction);
 
     return TextFormField(
       textCapitalization: TextCapitalization.words,
@@ -140,11 +138,10 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
   }
 
   Widget _phoneField() {
-
     final _phoneController = new TextEditingController(text: profile.phone);
 
     return TextFormField(
-      textCapitalization: TextCapitalization.words,
+      keyboardType: TextInputType.number,
       controller: _phoneController,
       maxLength: 20,
       decoration: InputDecoration(
@@ -160,11 +157,10 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
   }
 
   Widget _emailField() {
-
     final _emailController = new TextEditingController(text: profile.email);
 
     return TextFormField(
-      textCapitalization: TextCapitalization.words,
+      keyboardType: TextInputType.emailAddress,
       controller: _emailController,
       maxLength: 50,
       decoration: InputDecoration(
@@ -180,11 +176,11 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
   }
 
   Widget _emailEmpField() {
-
-    final _emailEmpController = new TextEditingController(text: profile.emailEmp);
+    final _emailEmpController =
+        new TextEditingController(text: profile.emailEmp);
 
     return TextFormField(
-      textCapitalization: TextCapitalization.words,
+      keyboardType: TextInputType.emailAddress,
       controller: _emailEmpController,
       maxLength: 50,
       decoration: InputDecoration(
@@ -198,8 +194,6 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
       onChanged: (value) => profile.emailEmp = value,
     );
   }
-
-  
 
   Widget _btnAccept() {
     return RaisedButton(
@@ -219,11 +213,17 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
           String emailEmp = profile.emailEmp;
           String id = profile.id;
 
-
-          editProfile( name, lastname, direction, phone, email, emailEmp, id);
+          if (id != null) {
+            editProfile(
+                name, lastname, direction, phone, email, emailEmp, id);
+          } 
+          // else {
+          //    createProfile(
+          //       name, lastname, direction, phone, email, emailEmp, id);
+          // }
 
           Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text('Tarea Modificada')));
+              .showSnackBar(SnackBar(content: Text('Perfil Modificado')));
 
           Timer(Duration(seconds: 2), () => Navigator.pop(context));
         }

@@ -46,17 +46,17 @@ class MyApp extends StatelessWidget {
               return LoginPage();
             }
           },
-          'login': (BuildContext context) => LoginPage(),
-          'register': (BuildContext context) => RegisterPage(),
-          'home': (BuildContext context) => HomePage(),
-          'documents': (BuildContext context) => DocumentsPage(),
-          'meetings': (BuildContext context) => MeetingsPage(),
-          'contacts': (BuildContext context) => ContactsPage(),
-          'profile': (BuildContext context) => ProfilePage(),
+          'login'      : (BuildContext context) => LoginPage(),
+          'register'   : (BuildContext context) => RegisterPage(),
+          'home'       : (BuildContext context) => HomePage(),
+          'documents'  : (BuildContext context) => DocumentsPage(),
+          'meetings'   : (BuildContext context) => MeetingsPage(),
+          'contacts'   : (BuildContext context) => ContactsPage(),
+          'profile'    : (BuildContext context) => ProfilePage(),
           'editProfile': (BuildContext context) => EditProfilePage(),
-          'tasks': (BuildContext context) => TasksPage(),
-          'newTask': (BuildContext context) => NewTaskPage(),
-          'editTask': (BuildContext context) => EditTaskPage()
+          'tasks'      : (BuildContext context) => TasksPage(),
+          'newTask'    : (BuildContext context) => NewTaskPage(),
+          'editTask'   : (BuildContext context) => EditTaskPage()
         },
         theme: myTheme,
       ),

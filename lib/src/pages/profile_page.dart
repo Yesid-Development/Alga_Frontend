@@ -1,6 +1,9 @@
+import 'package:alga_frontend/src/models/models.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -8,6 +11,50 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final _profileModel = ProfileModels();
+  final _dbRef = Firestore.instance;
+  SharedPreferences _prefs;
+
+  String _id;
+  String _name;
+  String _lastName;
+  String _direction;
+  String _email;
+  String _emailEmp;
+  String _phone;
+
+  bool loading = true;
+
+  _ProfilePageState() {
+    getProfile();
+  }
+
+  void getProfile() async {
+    await _dbRef
+        .collection('profile')
+        .document('DVNLLssLfyoHM2THgL6b')
+        .get()
+        .then(
+      (DocumentSnapshot document) {
+        _profileModel.id = document.documentID;
+        _profileModel.name = document['name'].toString();
+        _profileModel.lastname = document['lastname'].toString();
+        _profileModel.direction = document['direction'].toString();
+        _profileModel.email = document['email'].toString();
+        _profileModel.emailEmp = document['emailEmp'].toString();
+        _profileModel.phone = document['phone'].toString();
+
+        _id = _profileModel.id;
+        _name = _profileModel.name;
+        _lastName = _profileModel.lastname;
+        _direction = _profileModel.direction;
+        _email = _profileModel.email;
+        _emailEmp = _profileModel.emailEmp;
+        _phone = _profileModel.phone;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,44 +160,34 @@ class _ProfilePageState extends State<ProfilePage> {
       margin: EdgeInsets.only(left: 15, top: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Padding(padding: EdgeInsets.fromLTRB(0, 15, 0, 15)),
-              Text('Sede', style: _styleText),
-              Text('Medellín', style: TextStyle(fontSize: 16))
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Padding(padding: EdgeInsets.fromLTRB(90, 15, 90, 15)),
-              Text('Correo', style: _styleText),
+              Text('Correo Emp.', style: _styleText),
               Text('Correo@gmail.com', style: TextStyle(fontSize: 16))
             ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Padding(padding: EdgeInsets.fromLTRB(40, 15, 40, 15)),
-              Text('Estado', style: _styleText),
-              Text('Presencial', style: TextStyle(fontSize: 16))
+              Text('Dirección Emp.', style: _styleText),
+              Text('Correo@gmail.com', style: TextStyle(fontSize: 16))
             ],
-          )
+          ),
         ],
       ),
     );
   }
 
-  Column _personalData(Size size) {
+  Widget _personalData(Size size) {
+    getProfile();
     final _textColor = Colors.white;
 
-
-    final datos = Container(
-      margin: EdgeInsets.only(top: 340, left: 10, right: 10),
-      height: size.height * 0.91,
+    return Container(
+      margin: EdgeInsets.only(top: 340, left: 10, right: 10, bottom: 20.0),
+      height: size.height * 0.7,
       width: size.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(topRight: Radius.circular(60)),
@@ -197,50 +234,45 @@ class _ProfilePageState extends State<ProfilePage> {
                             fontWeight: FontWeight.bold)),
                   ),
                   ListTile(
-                    title: Text('Nombre', style: TextStyle(color: _textColor),),
-                    subtitle: Text('Andres', style: TextStyle(color: _textColor)),
-                    leading: Icon(Icons.account_box, color: _textColor)
-                  ),
+                      title: Text(
+                        'Nombre',
+                        style: TextStyle(color: _textColor),
+                      ),
+                      subtitle: Text(_name != null ? _name : 'cargando...',
+                          style: TextStyle(color: _textColor)),
+                      leading: Icon(Icons.account_box, color: _textColor)),
                   ListTile(
-                    title: Text('Apellido', style: TextStyle(color: _textColor)),
-                    subtitle: Text('Bustamante Castro', style: TextStyle(color: _textColor)),
-                    leading: Icon(Icons.portrait, color: _textColor)
-                  ),
+                      title:
+                          Text('Apellido', style: TextStyle(color: _textColor)),
+                      subtitle: Text(
+                          _lastName != null ? _lastName : 'cargando...',
+                          style: TextStyle(color: _textColor)),
+                      leading: Icon(Icons.portrait, color: _textColor)),
                   ListTile(
-                    title: Text('Dirección', style: TextStyle(color: _textColor)),
-                    subtitle: Text('Calle 14 #52-64', style: TextStyle(color: _textColor)),
-                    leading: Icon(Icons.place, color: _textColor)
-                  ),
+                      title: Text('Dirección',
+                          style: TextStyle(color: _textColor)),
+                      subtitle: Text(
+                          _direction != null ? _direction : 'cargando...',
+                          style: TextStyle(color: _textColor)),
+                      leading: Icon(Icons.place, color: _textColor)),
                   ListTile(
-                    title: Text('Teléfono', style: TextStyle(color: _textColor)),
-                    subtitle: Text('31617382014', style: TextStyle(color: _textColor)),
-                    leading: Icon(Icons.add_call, color: _textColor)
-                  ),
+                      title:
+                          Text('Teléfono', style: TextStyle(color: _textColor)),
+                      subtitle: Text(_phone != null ? _phone : 'cargando...',
+                          style: TextStyle(color: _textColor)),
+                      leading: Icon(Icons.add_call, color: _textColor)),
                   ListTile(
-                    title: Text('Correo', style: TextStyle(color: _textColor)),
-                    subtitle: Text('Ejemplo@gmail.com', style: TextStyle(color: _textColor)),
-                    leading: Icon(Icons.alternate_email, color: _textColor)
-                  ),
-                  ListTile(
-                    title: Text('Fecha de Ingreso', style: TextStyle(color: _textColor)),
-                    subtitle: Text('06:00 A.m.', style: TextStyle(color: _textColor)),
-                    leading: Icon(Icons.access_alarm, color: _textColor)
-                  ),
-                  ListTile(
-                    title: Text('Fecha de Salida', style: TextStyle(color: _textColor)),
-                    subtitle: Text('04:00 P.m.', style: TextStyle(color: _textColor)),
-                    leading: Icon(Icons.access_alarm, color: _textColor)
-                  ), // leading: Icon(Ic
+                      title:
+                          Text('Correo', style: TextStyle(color: _textColor)),
+                      subtitle: Text(_email != null ? _email : 'cargando...',
+                          style: TextStyle(color: _textColor)),
+                      leading: Icon(Icons.alternate_email, color: _textColor)),
                 ],
               ),
             ),
           ],
         ),
       ),
-    );
-
-    return Column(
-      children: <Widget>[datos, SizedBox(height: 10)],
     );
   }
 
@@ -266,7 +298,8 @@ class _ProfilePageState extends State<ProfilePage> {
           label: 'Editar',
           labelStyle: TextStyle(fontSize: 18.0),
           onTap: () => {
-            Navigator.of(context).pushNamed('editProfile')
+            Navigator.of(context)
+                .pushNamed('editProfile', arguments: _profileModel)
           },
         ),
       ],

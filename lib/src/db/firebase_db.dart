@@ -38,6 +38,7 @@ void createProfile(String name, String lastname, String direction, String phone,
           'phone': phone,
           'email': email,
           'emailEmp': emailEmp,
+          'created_at': FieldValue.serverTimestamp(),
         });
 }
 
