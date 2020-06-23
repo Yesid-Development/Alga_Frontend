@@ -29,16 +29,29 @@ void editTasks(String title, String date, String description, String id) {
   }
 }
 
-void createProfile(String nombre, String apellido, String direccion, String telefono, String correo, String correoP, String sede) async {
-  await dbRef.collection('profile')
+//Perfil
+
+void createProfile(String name, String lastname, String direction, String phone, String email, String emailEmp, String id) async {
+  await _dbRef
+        .collection('profile')
         .document()
         .setData({
-          'nombre': nombre,
-          'apellido': apellido,
-          'direccion': direccion,
-          'telefono': telefono,
-          'correo': correo,
-          'correoP': correoP,
-          'sede': sede,
+          'name': name, 
+          'lastname': lastname, 
+          'direction': direction,
+          'phone': phone,
+          'email': email,
+          'emailEmp': emailEmp,
         });
+}
+
+void editProfile(String name, String lastname, String direction, String phone, String email, String emailEmp, String id) {
+  try {
+    _dbRef
+        .collection('profile')
+        .document('$id')
+        .updateData({'name': name, 'lastname': lastname, 'direction': direction,'phone': phone,'email': email,'emailEmp': emailEmp,});
+  } catch (e) {
+    print(e.toString());
+  }
 }

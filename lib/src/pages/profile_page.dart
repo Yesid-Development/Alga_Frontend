@@ -266,7 +266,7 @@ class _ProfilePageState extends State<ProfilePage> {
           label: 'Editar',
           labelStyle: TextStyle(fontSize: 18.0),
           onTap: () => {
-            Navigator.of(context).pushNamed('edit')
+            Navigator.of(context).pushNamed('editProfile')
           },
         ),
       ],

@@ -14,3 +14,24 @@ class TasksModels {
     this.document
   });
 }
+
+class ProfileModels{
+  String id;
+  String name;
+  String lastname;
+  String direction;
+  String phone;
+  String email;
+  String emailEmp;
+  DocumentReference documentP;
+
+  ProfileModels({
+    this.name,
+    this.lastname,
+    this.direction,
+    this.phone,
+    this.email,
+    this.emailEmp,   
+    this.documentP 
+  });
+}

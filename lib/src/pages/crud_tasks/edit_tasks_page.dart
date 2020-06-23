@@ -144,7 +144,7 @@ class __EditTaskFormState extends State<_EditTaskForm> {
       keyboardType: TextInputType.multiline,
       minLines: 5,
       maxLines: null,
-      maxLength: 500,
+      maxLength: 100,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
           labelText: 'Descripción'),
