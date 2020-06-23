@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // );
 
 final myTheme = ThemeData(
-  primaryColor: Color(0xff279152),
+  primaryColor: Colors.deepPurpleAccent,
   accentColor: Color(0xFFD8ECF1),
   scaffoldBackgroundColor: Color(0xFFF3F5F7),
 );

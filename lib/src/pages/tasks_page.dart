@@ -17,7 +17,6 @@ class _TasksPageState extends State<TasksPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tareas'),
-        backgroundColor: Colors.blue,
       ),
       body: Container(margin: EdgeInsets.only(top: 5.0), child: _buildList()),
       floatingActionButton: _buildFloatingActionButton(),
@@ -86,7 +85,7 @@ class _TasksPageState extends State<TasksPage> {
   FloatingActionButton _buildFloatingActionButton() {
     return FloatingActionButton(
         backgroundColor: Colors.white,
-        child: Icon(Icons.add, size: 35, color: Colors.blue),
+        child: Icon(Icons.add, size: 35, color: Colors.deepPurple),
         onPressed: () {
           final route = MaterialPageRoute(builder: (context) => NewTaskPage());
           Navigator.push(context, route);

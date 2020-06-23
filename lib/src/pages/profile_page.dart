@@ -261,7 +261,7 @@ class _ProfilePageState extends State<ProfilePage> {
       shape: CircleBorder(),
       children: [
         SpeedDialChild(
-          child: Icon(FontAwesomeIcons.paintBrush),
+          child: Icon(FontAwesomeIcons.paintBrush, color: Colors.white),
           backgroundColor: Colors.lightBlueAccent,
           label: 'Editar',
           labelStyle: TextStyle(fontSize: 18.0),

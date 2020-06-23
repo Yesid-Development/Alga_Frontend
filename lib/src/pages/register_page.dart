@@ -109,7 +109,7 @@ class __RegisterFormState extends State<_RegisterForm> {
                   topLeft: Radius.circular(30),
                   bottomRight: Radius.circular(50),
                   bottomLeft: Radius.circular(30))),
-          icon: Icon(Icons.alternate_email, color: Colors.green[700]),
+          icon: Icon(Icons.alternate_email, color: Theme.of(context).primaryColor),
           labelText: 'Correo electrónico',
         ),
         autovalidate: false,
@@ -133,7 +133,7 @@ class __RegisterFormState extends State<_RegisterForm> {
             bottomRight: Radius.circular(50),
             bottomLeft: Radius.circular(30),
           )),
-          icon: Icon(Icons.lock_outline, color: Colors.green[700]),
+          icon: Icon(Icons.lock_outline, color: Theme.of(context).primaryColor),
           labelText: 'Contraseña',
         ),
         obscureText: true,
@@ -161,7 +161,7 @@ class __RegisterFormState extends State<_RegisterForm> {
         // bottomLeft: Radius.circular(50),
       )),
       elevation: 0.0,
-      color: Colors.green[700],
+      color: Theme.of(context).primaryColor,
       textColor: Colors.white,
       onPressed: () {
         final isValid = _formKey.currentState.validate();
@@ -198,7 +198,7 @@ class _LoginButton extends StatelessWidget {
               'Ingresa',
               style: TextStyle(
                   fontSize: 16,
-                  color: Colors.green,
+                  color: Colors.deepPurple,
                   fontWeight: FontWeight.w700),
             ),
             onPressed: () {

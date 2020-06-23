@@ -2,34 +2,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _dbRef = Firestore.instance;
 
-// Guardar tareas en firestore
+//========= Taks =========\\
 void createTasks(String title, String date, String description) async {
-  await _dbRef
-      .collection('task')
-      .document()
-      .setData({'title': title, 'date': date, 'description': description, 'created_at': FieldValue.serverTimestamp(),});
-}
-
-// Mostrar tareas de firestore
-void showTasks() {
-  _dbRef
-      .collection('task')
-      .snapshots()
-      .listen((data) => data.documents.forEach((doc) => print(doc["title"])));
+  await _dbRef.collection('task').document().setData({
+    'title': title,
+    'date': date,
+    'description': description,
+    'created_at': FieldValue.serverTimestamp(),
+  });
 }
 
 void editTasks(String title, String date, String description, String id) {
   try {
-    _dbRef
-        .collection('task')
-        .document('$id')
-        .updateData({'title': title, 'date': date, 'description': description,});
+    _dbRef.collection('task').document('$id').updateData({
+      'title': title,
+      'date': date,
+      'description': description,
+    });
   } catch (e) {
     print(e.toString());
   }
 }
+//========= Taks =========\\
 
-//Perfil
+
 
 void createProfile(String name, String lastname, String direction, String phone, String email, String emailEmp, String id) async {
   await _dbRef
@@ -55,3 +51,5 @@ void editProfile(String name, String lastname, String direction, String phone, S
     print(e.toString());
   }
 }
+
+

@@ -7,13 +7,11 @@ class DocumentsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Documentos'),
-        backgroundColor: Colors.lightBlue,
       ),
       // drawer: _MenuUsuario(),
       body: _DocumentsList(),
       floatingActionButton: FloatingActionButton(
         onPressed: null,
-        backgroundColor: Colors.lightBlue,
         child: Icon(Icons.add),
       ),
     );

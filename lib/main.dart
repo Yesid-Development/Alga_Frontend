@@ -3,6 +3,7 @@ import 'package:alga_frontend/src/pages/crud_tasks/edit_tasks_page.dart';
 import 'package:alga_frontend/src/pages/crud_tasks/new_tasks_page.dart';
 import 'package:alga_frontend/src/pages/navigation.dart';
 import 'package:alga_frontend/src/pages/tasks_page.dart';
+import 'package:alga_frontend/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
           'newTask': (BuildContext context) => NewTaskPage(),
           'editTask': (BuildContext context) => EditTaskPage()
         },
+        theme: myTheme,
       ),
     );
   }
