@@ -35,3 +35,19 @@ class ProfileModels{
     this.documentP 
   });
 }
+
+class ContacsModels{
+  String name;
+  String lastname;
+  String number;
+  String address;
+  String email;
+
+  ContacsModels({
+    this.name,
+    this.lastname,
+    this.number,
+    this.address,
+    this.email
+  });
+}

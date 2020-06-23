@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _dbRef = Firestore.instance;
 
-//========= Taks =========\\
+//================ TASKS ===============\\
 void createTasks(String title, String date, String description) async {
   await _dbRef.collection('task').document().setData({
     'title': title,
@@ -23,10 +23,10 @@ void editTasks(String title, String date, String description, String id) {
     print(e.toString());
   }
 }
-//========= Taks =========\\
+//=============== TASKS ================\\
 
 
-
+//================= PROFILE =====================\\
 void createProfile(String name, String lastname, String direction, String phone, String email, String emailEmp, String id) async {
   await _dbRef
         .collection('profile')
@@ -51,5 +51,61 @@ void editProfile(String name, String lastname, String direction, String phone, S
     print(e.toString());
   }
 }
+//================== PROFILE ===============\\
 
 
+//========================CONTACS==========================\\
+void createContacs(String name, String lastname, String number,  String address, String email) async { 
+  await _dbRef.collection("contacts") 
+      .document() 
+      .setData({ 
+        'name' : name , 
+        'lastname' : lastname,
+        'number': number,
+        'address': address,
+        'email': email,
+        'created_at': FieldValue.serverTimestamp()
+       }); 
+}
+
+
+void editContacts(String id, String name, String lastname, String number,  String address, String email) {
+  try {
+    _dbRef.collection('contacts')
+        .document('$id')
+        .updateData({
+          'name': name,
+          'lastname': lastname,
+          'number': number,
+          'address': address,
+          'email': email
+             });
+  } catch (e) {
+    print(e.toString());
+  }
+}
+//==================CONTACTS================\\
+
+
+//==================DOCUMENTS================\\
+void createFile(Blob file) async { 
+  await _dbRef.collection("files") 
+      .document() 
+      .setData({ 
+        'file': file,
+        'created_at': FieldValue.serverTimestamp()
+       }); 
+}
+
+void editFile(String id, Blob file) {
+  try {
+    _dbRef.collection('files')
+        .document('$id')
+        .updateData({
+          'file': file
+             });
+  } catch (e) {
+    print(e.toString());
+  }
+}
+//==================DOCUMENTS================\\
