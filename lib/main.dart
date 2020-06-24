@@ -1,3 +1,5 @@
+import 'package:alga_frontend/src/pages/crud_Contacts/new_contacts_page.dart';
+import 'package:alga_frontend/src/pages/crud_contacts/edit_contacts_page.dart';
 import 'package:alga_frontend/src/pages/crud_profile/edit_profile_page.dart';
 import 'package:alga_frontend/src/pages/crud_tasks/edit_tasks_page.dart';
 import 'package:alga_frontend/src/pages/crud_tasks/new_tasks_page.dart';
@@ -46,17 +48,19 @@ class MyApp extends StatelessWidget {
               return LoginPage();
             }
           },
-          'login'      : (BuildContext context) => LoginPage(),
-          'register'   : (BuildContext context) => RegisterPage(),
-          'home'       : (BuildContext context) => HomePage(),
-          'documents'  : (BuildContext context) => DocumentsPage(),
-          'meetings'   : (BuildContext context) => MeetingsPage(),
-          'contacts'   : (BuildContext context) => ContactsPage(),
-          'profile'    : (BuildContext context) => ProfilePage(),
-          'editProfile': (BuildContext context) => EditProfilePage(),
-          'tasks'      : (BuildContext context) => TasksPage(),
-          'newTask'    : (BuildContext context) => NewTaskPage(),
-          'editTask'   : (BuildContext context) => EditTaskPage()
+          'login'       : (BuildContext context) => LoginPage(),
+          'register'    : (BuildContext context) => RegisterPage(),
+          'home'        : (BuildContext context) => HomePage(),
+          'documents'   : (BuildContext context) => DocumentsPage(),
+          'meetings'    : (BuildContext context) => MeetingsPage(),
+          'contacts'    : (BuildContext context) => ContactsPage(),
+          'newcontacts' : (BuildContext context) => NewContactsPage(),
+          'editcontacts': (BuildContext context) => EditContactsPage(),
+          'profile'     : (BuildContext context) => ProfilePage(),
+          'editProfile' : (BuildContext context) => EditProfilePage(),
+          'tasks'       : (BuildContext context) => TasksPage(),
+          'newTask'     : (BuildContext context) => NewTaskPage(),
+          'editTask'    : (BuildContext context) => EditTaskPage()
         },
         theme: myTheme,
       ),

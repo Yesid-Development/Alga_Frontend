@@ -5,32 +5,33 @@ import 'package:alga_frontend/src/models/models.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditContactsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Modificar perfil'),
+        title: Text('Modificar Contacto'),
       ),
-      body: BounceInRight(child: _EditProfileForm()),
+      body: BounceInRight(child: _EditContactsForm()),
     );
   }
 }
 
-class _EditProfileForm extends StatefulWidget {
+class _EditContactsForm extends StatefulWidget {
   @override
-  __EditProfileFormtate createState() => __EditProfileFormtate();
+  __EditContactsFormState createState() => __EditContactsFormState();
 }
 
-class __EditProfileFormtate extends State<_EditProfileForm> {
+class __EditContactsFormState extends State<_EditContactsForm> {
+
   final _formkey = GlobalKey<FormState>();
-  ProfileModels profile = ProfileModels();
+  ContactsModels contacts = ContactsModels();
 
   @override
   Widget build(BuildContext context) {
-    final ProfileModels profileData = ModalRoute.of(context).settings.arguments;
-    if (profileData != null) {
-      profile = profileData;
+    final ContactsModels contactData = ModalRoute.of(context).settings.arguments;
+    if (contactData != null) {
+      contacts = contactData;
     }
 
     final size = MediaQuery.of(context).size;
@@ -39,7 +40,7 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
       physics: BouncingScrollPhysics(),
       children: <Widget>[
         Container(
-          height: size.height * 1.2,
+          height: size.height * 0.82,
           margin: EdgeInsets.all(24),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -57,17 +58,15 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
               child: Column(
                 children: <Widget>[
                   _nameField(),
-                  Divider(color: Colors.transparent),
-                  _lastnameField(),
-                  Divider(color: Colors.transparent),
-                  _directionField(),
-                  Divider(color: Colors.transparent),
-                  _phoneField(),
-                  Divider(color: Colors.transparent),
-                  _emailField(),
-                  Divider(color: Colors.transparent),
-                  _emailEmpField(),
-                  SizedBox(height: 39),
+                    Divider(color: Colors.transparent,),
+                    _lastnameField(),
+                    Divider(color: Colors.transparent),
+                    _positionField(),
+                    Divider(color: Colors.transparent),
+                    _numberField(),
+                    Divider(color: Colors.transparent),
+                    _emailField(),                    
+                    SizedBox(height: 39),
                   _btnAccept()
                 ],
               ),
@@ -79,12 +78,13 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
   }
 
   Widget _nameField() {
-    final _nameController = new TextEditingController(text: profile.name);
+
+    final _nameController = new TextEditingController(text: contacts.name);
 
     return TextFormField(
       textCapitalization: TextCapitalization.words,
       controller: _nameController,
-      maxLength: 50,
+      maxLength: 100,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
           labelText: 'Nombre'),
@@ -93,18 +93,20 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
           return 'El nombre no puedo estar vacio';
         }
       },
-      onChanged: (value) => profile.name = value,
+      onChanged: (value) => contacts.name = value,
     );
   }
 
   Widget _lastnameField() {
-    final _lastnameController =
-        new TextEditingController(text: profile.lastname);
+
+    final _lastnameController = new TextEditingController(text: contacts.lastname);
+
+
 
     return TextFormField(
-      textCapitalization: TextCapitalization.words,
+      textCapitalization: TextCapitalization.sentences,
       controller: _lastnameController,
-      maxLength: 50,
+      maxLength: 100,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
           labelText: 'Apellido'),
@@ -113,85 +115,68 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
           return 'El apellido no puedo estar vacio';
         }
       },
-      onChanged: (value) => profile.lastname = value,
+      onChanged: (value) => contacts.lastname = value,
     );
   }
 
-  Widget _directionField() {
-    final _directionController =
-        new TextEditingController(text: profile.direction);
+  Widget _positionField() {
+
+    final _positionController = new TextEditingController(text: contacts.position);
+
 
     return TextFormField(
-      textCapitalization: TextCapitalization.words,
-      controller: _directionController,
-      maxLength: 50,
+      textCapitalization: TextCapitalization.sentences,
+      controller: _positionController,
+      maxLength: 100,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          labelText: 'Dirección'),
+          labelText: 'Cargo'),
       validator: (String value) {
         if (value.isEmpty) {
-          return 'La dirección no puedo estar vacio';
+          return 'El cargo no puedo estar vacio';
         }
-      },
-      onChanged: (value) => profile.direction = value,
+      },     
+      onChanged: (value) => contacts.position = value,
     );
   }
 
-  Widget _phoneField() {
-    final _phoneController = new TextEditingController(text: profile.phone);
+  Widget _numberField() {
+
+    final _numberController = new TextEditingController(text: contacts.number);
 
     return TextFormField(
       keyboardType: TextInputType.number,
-      controller: _phoneController,
+      controller: _numberController,
       maxLength: 10,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          labelText: 'Teléfono'),
+          labelText: 'Número de Teléfono'),
       validator: (String value) {
         if (value.isEmpty) {
-          return 'El teléfono no puedo estar vacio';
+          return 'El número de teléfono no puedo estar vacio';
         }
       },
-      onChanged: (value) => profile.phone = value,
+      onChanged: (value) => contacts.number = value,
     );
   }
 
   Widget _emailField() {
-    final _emailController = new TextEditingController(text: profile.email);
+
+    final _emailController = new TextEditingController(text: contacts.email);
 
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
       controller: _emailController,
-      maxLength: 50,
+      maxLength: 100,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
           labelText: 'Correo'),
       validator: (String value) {
         if (value.isEmpty) {
-          return 'El Correo no puedo estar vacio';
+          return 'El correo no puedo estar vacio';
         }
       },
-      onChanged: (value) => profile.email = value,
-    );
-  }
-
-  Widget _emailEmpField() {
-    final _emailEmpController =
-        new TextEditingController(text: profile.emailEmp);
-
-    return TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      controller: _emailEmpController,
-      maxLength: 50,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          labelText: 'Correo Empresarial'),
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'El Correo Empresarial no puedo estar vacio';
-        }
-      },
-      onChanged: (value) => profile.emailEmp = value,
+      onChanged: (value) => contacts.email = value,
     );
   }
 
@@ -205,25 +190,17 @@ class __EditProfileFormtate extends State<_EditProfileForm> {
       onPressed: () {
         final isValid = _formkey.currentState.validate();
         if (isValid) {
-          String name = profile.name;
-          String lastname = profile.lastname;
-          String direction = profile.direction;
-          String phone = profile.phone;
-          String email = profile.email;
-          String emailEmp = profile.emailEmp;
-          String id = profile.id;
+          String name = contacts.name;
+          String lastname = contacts.lastname;
+          String position = contacts.position;
+          String number = contacts.number;
+          String email = contacts.email;
+          String id = contacts.id;
 
-          if (id != null) {
-            editProfile(
-                name, lastname, direction, phone, email, emailEmp, id);
-          } 
-          // else {
-          //    createProfile(
-          //       name, lastname, direction, phone, email, emailEmp, id);
-          // }
+          editContacts(name, lastname, position, number, email, id);
 
           Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text('Perfil Modificado')));
+              .showSnackBar(SnackBar(content: Text('Contacto Modificada')));
 
           Timer(Duration(seconds: 2), () => Navigator.pop(context));
         }

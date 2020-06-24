@@ -32,18 +32,19 @@ class ProfileModels{
   });
 }
 
-class ContacsModels{
+class ContactsModels{
+  String id;
   String name;
   String lastname;
-  String number;
-  String address;
+  String position;
+  String number;  
   String email;
 
-  ContacsModels({
+  ContactsModels({
     this.name,
     this.lastname,
-    this.number,
-    this.address,
+    this.position,
+    this.number,    
     this.email
   });
 }

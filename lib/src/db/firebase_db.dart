@@ -56,31 +56,29 @@ void editProfile(String name, String lastname, String direction, String phone, S
 
 
 //========================CONTACS==========================\\
-void createContacs(String name, String lastname, String number,  String address, String email) async { 
+void createContacts(String name, String lastname, String position, String number, String email) async { 
   await _dbRef.collection("contacts") 
       .document() 
       .setData({ 
         'name' : name , 
         'lastname' : lastname,
-        'number': number,
-        'address': address,
+        'position': position,
+        'number': number,        
         'email': email,
         'created_at': FieldValue.serverTimestamp()
        }); 
 }
 
 
-void editContacts(String id, String name, String lastname, String number,  String address, String email) {
+void editContacts(String name, String lastname, String position, String number, String email, String id) {
   try {
-    _dbRef.collection('contacts')
-        .document('$id')
-        .updateData({
-          'name': name,
-          'lastname': lastname,
-          'number': number,
-          'address': address,
-          'email': email
-             });
+    _dbRef.collection('contacts').document('$id').updateData({
+      'name' : name , 
+        'lastname' : lastname,
+        'position': position,
+        'number': number,        
+        'email': email,
+    });
   } catch (e) {
     print(e.toString());
   }
