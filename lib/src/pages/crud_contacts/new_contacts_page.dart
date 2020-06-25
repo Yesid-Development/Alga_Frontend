@@ -51,7 +51,7 @@ class __NewContactFormState extends State<_NewContactForm> {
         physics: BouncingScrollPhysics(),
         children: <Widget>[
           Container(
-            height: size.height * 0.82,
+            height: size.height * 0.99,
             margin: EdgeInsets.all(24),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),

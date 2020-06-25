@@ -30,6 +30,8 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   cloud_firestore: ^0.13.6
   table_calendar: ^2.2.3
+  flutter_pdfview: ^1.0.3
+  path_provider: ^1.6.11
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +44,7 @@ flutter:
   assets:
     - assets/img/
     - assets/gifs/
+    - assets/
 
   # fonts:
   #   - family: Schyler

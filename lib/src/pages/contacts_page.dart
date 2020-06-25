@@ -55,6 +55,23 @@ class _ContactsPageState extends State<ContactsPage> {
             return Column(
               children: <Widget>[
                 ListTile(
+                    leading: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(90.0),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 10.0,
+                                spreadRadius: 1.0,
+                                offset: Offset(1.0, 1.0))
+                          ]),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white70,
+                        backgroundImage: NetworkImage(
+                            'https://image.freepik.com/foto-gratis/retrato-hombre-blanco-aislado_53876-40306.jpg'),
+                        radius: 30,
+                      ),
+                    ),
                     trailing: IconButton(
                       onPressed: () => document.reference.delete(),
                       icon: Icon(Icons.delete),
@@ -63,12 +80,12 @@ class _ContactsPageState extends State<ContactsPage> {
                       contacts.name != null
                           ? '$_name $_lastname'
                           : '<No hay nombre disponible>',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500
-                          ),
+                      style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                     subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 10.0,),
+                      padding: const EdgeInsets.only(
+                        top: 10.0,
+                      ),
                       child: Text(contacts.position != null
                           ? '''$_position \n\n$_number \n\n$_email'''
                           : '<sin descripción>'),
@@ -77,7 +94,7 @@ class _ContactsPageState extends State<ContactsPage> {
                       Navigator.of(context)
                           .pushNamed('editcontacts', arguments: contacts);
                     }),
-                    Divider()
+                Divider()
               ],
             );
           },
@@ -91,7 +108,8 @@ class _ContactsPageState extends State<ContactsPage> {
         backgroundColor: Colors.white,
         child: Icon(Icons.add, size: 35, color: Colors.deepPurple),
         onPressed: () {
-          final route = MaterialPageRoute(builder: (context) => NewContactsPage());
+          final route =
+              MaterialPageRoute(builder: (context) => NewContactsPage());
           Navigator.push(context, route);
         });
   }

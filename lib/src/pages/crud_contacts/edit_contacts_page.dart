@@ -40,7 +40,7 @@ class __EditContactsFormState extends State<_EditContactsForm> {
       physics: BouncingScrollPhysics(),
       children: <Widget>[
         Container(
-          height: size.height * 0.82,
+          height: size.height * 0.99,
           margin: EdgeInsets.all(24),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
@@ -200,7 +200,7 @@ class __EditContactsFormState extends State<_EditContactsForm> {
           editContacts(name, lastname, position, number, email, id);
 
           Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text('Contacto Modificada')));
+              .showSnackBar(SnackBar(content: Text('Contacto Modificado')));
 
           Timer(Duration(seconds: 2), () => Navigator.pop(context));
         }
