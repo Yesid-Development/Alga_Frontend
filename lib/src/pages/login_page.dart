@@ -80,7 +80,7 @@ class __LoginFormState extends State<_LoginForm> {
           ),
           Container(
             width: _size.width * 0.85,
-            height: _size.height * 0.9,
+            height: _size.height * 0.8,
             margin: EdgeInsets.symmetric(vertical: 10.0),
             padding: EdgeInsets.symmetric(vertical: 50.0),
             decoration: BoxDecoration(
@@ -112,8 +112,8 @@ class __LoginFormState extends State<_LoginForm> {
                 ),
                 // Boton de login
                 _loginButton(),
-                // Login de google
-                _googleLogin(),
+                // // Login de google
+                // _googleLogin(),
                 // Boton de registro
                 _RegisterButton(),
               ],
